@@ -18,7 +18,7 @@ const Main = () => {
                     {
                     shoes.map((a, i) => {
                             return (
-                                <Col key={shoes.id} sm={4}>
+                                <Col key={shoes[i].id} sm={4}>
                                     <GoodsList shoes={shoes[i]} i={i}></GoodsList>
                                 </Col> 
                             )

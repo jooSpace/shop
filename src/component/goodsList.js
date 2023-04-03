@@ -2,8 +2,6 @@ import React from 'react';
 
 const GoodsList = (props) => {
 
-    console.log(props);
-
     return (
         <>              
             {/* <img src={process.env.PUBLIC_URL + '/img.jpg'} width={300}></img> */}

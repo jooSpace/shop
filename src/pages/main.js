@@ -2,7 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import data from '../data.js';
-import GoodsList from '../component/goodsList.js';
+import GoodsList from '../component/GoodsList.js';
+import Detail from './Detail.js';
+import { Route } from 'react-router-dom';
 
 const Main = () => {
 
@@ -26,7 +28,9 @@ const Main = () => {
                     }
                 </Row>
             </Container>
+            {/* <Route path='/detail' element={<Detail shoes={shoes}/>}></Route> */}
         </div>
+        
     );
 }
 

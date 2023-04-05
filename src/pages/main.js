@@ -5,6 +5,7 @@ import data from '../data.js';
 import GoodsList from '../component/GoodsList.js';
 import Detail from './Detail.js';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 const Main = () => {
 
@@ -29,6 +30,30 @@ const Main = () => {
                 </Row>
             </Container>
             {/* <Route path='/detail' element={<Detail shoes={shoes}/>}></Route> */}
+            <button type='button' onClick={() =>{
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((res) => {
+                    // console.log(res.data);
+                    let copy = [...shoes, ...res.data];
+                    setShoes(copy);
+                })
+                .catch(() => {
+                    console.log('실패');
+                })
+
+                // post
+                // axios.post('/postUrl', {name : 'park'})
+
+                // 동시GET 요청
+                // Promise.all([axios.get('/url1'), axios.get('/url2')])
+                // .then(() => {
+                //     console.log('성공');
+                // })
+                
+            }}>
+            버튼
+            </button>
+            
         </div>
         
     );

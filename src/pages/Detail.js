@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { Nav } from 'react-bootstrap'
 
 let YellowBtn = styled.button`
     background : yellow;
@@ -12,6 +13,7 @@ const Detail = (props) => {
 
     let {id} = useParams();
     let [alert, setAlert] = useState(true)
+    let [tab, setTab] = useState(0)
 
     useEffect(() => {
         setTimeout(() => {
@@ -23,7 +25,7 @@ const Detail = (props) => {
             
             <div className="row">
                 {
-                    alert == true 
+                    alert === true 
                     ? <div className='alert alert-warning'>
                         2초이내 구매시 할인
                     </div>
@@ -50,10 +52,33 @@ const Detail = (props) => {
                         </div>
                     
                 }
-               
-            </div> 
+            <Nav variant="tabs"  defaultActiveKey="link0">
+                <Nav.Item>
+                <Nav.Link onClick={() => {setTab(0)}} eventKey="link0">버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Nav.Link onClick={() => {setTab(1)}} eventKey="link1">버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Nav.Link onClick={() => {setTab(2)}} eventKey="link2">버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <TabContent tab ={tab}></TabContent> 
+            </div>
         </div>
     );
+}
+
+function TabContent(props){
+    if (props.tab === 0){
+      return <div>내용0</div>
+    }
+    if (props.tab === 1){
+      return <div>내용1</div>
+    }
+    if (props.tab === 2){
+      return <div>내용2</div>
+    }
 }
 
 export default Detail;

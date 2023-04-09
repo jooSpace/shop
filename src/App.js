@@ -7,6 +7,7 @@ import One from './component/One';
 import Two from './component/Two';
 import { Route, Routes, Outlet } from 'react-router-dom';
 import data from './data';
+import Cart from './component/Cart';
 import { useState } from 'react';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='one' element={<One></One>}></Route>
           <Route path='two' element={<Two></Two>}></Route>
         </Route>
+        <Route path='cart' element={<Cart></Cart>}></Route>
         <Route path='*' element={<Error/>}></Route>
       </Routes>
     </div>

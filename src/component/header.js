@@ -1,9 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import { Button, Container, Form, Nav, Navbar} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = () => {
 
     let navigate = useNavigate();
+
+    // react-query 성공/실패/로딩중 파악 가능
+    let result = useQuery('Data', () => {
+        return axios.get('https://codingapple1.github.io/userdata.json').then((a) => {
+            return a.data;
+        })
+    })
+
+    
+
 
     return (
         <Navbar bg="light" expand="lg">
@@ -19,17 +31,14 @@ const Header = () => {
                     <Link to="/" className='iink-container'>Home</Link>
                     <Link to="detail/1" className='iink-container'>Detail</Link>
                     <Nav.Link onClick={() => navigate('/detail/1')} className='iink-container'>Link</Nav.Link>
+                    <Link to="Cart" className='iink-container'>Cart</Link>
                     <Link to="event" className='iink-container'>Event</Link>
+                    
                 </Nav>
-                <Form className="d-flex">
-                    <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                    />
-                    <Button variant="outline-success">Search</Button>
-                </Form>
+                <Nav className='ms-auto'>
+                {/* { result.isLoading ? '로딩중' : result.data.name } */}
+                </Nav>
+                
                 </Navbar.Collapse>
             </Container>
         </Navbar>

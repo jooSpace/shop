@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeName } from '../store/store';
+import { changeName, addCount } from '../store/store';
 
 const Cart = () => {
 
@@ -25,12 +25,16 @@ const Cart = () => {
                 {
                     state.cart.map((a, i) => { 
                         return <tr key={i}>
+                            <td>{state.cart[i].id}</td>
                             <td>{state.cart[i].name}</td>
                             <td>{state.cart[i].count}</td>
                             <td>안녕</td>
                             <td><button onClick={() => {
                                 dispatch(changeName())
                             }} type='button'>+</button></td>
+                            <td><button onClick={() => {
+                                dispatch(addCount(state.cart[i].id))
+                            }} type='button'>Count</button></td>
                         </tr>
                     })
                 }

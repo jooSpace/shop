@@ -1,7 +1,9 @@
 import react, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { json, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Nav } from 'react-bootstrap'
+import { addItem } from '../store/store';
+import { useDispatch } from 'react-redux';
 
 let YellowBtn = styled.button`
     background : yellow;
@@ -12,8 +14,19 @@ let YellowBtn = styled.button`
 const Detail = (props) => {
 
     let {id} = useParams();
+    let findShoes = props.shoes.find(x => x.id == id);
     let [alert, setAlert] = useState(true)
     let [tab, setTab] = useState(0)
+    let dispatch = useDispatch()
+
+    useEffect(() => {
+        let localItem = localStorage.getItem('watched')
+        localItem = JSON.parse(localItem);
+        localItem.push(findShoes.id);
+        localItem = new Set(localItem)
+        localItem = Array.from(localItem)
+        localStorage.setItem('watched', JSON.stringify(localItem));
+    },[])
 
     useEffect(() => {
         setTimeout(() => {
@@ -43,7 +56,9 @@ const Detail = (props) => {
                             <h4 className="pt-5">{props.shoes[id].title}</h4>
                             <p>{props.shoes[id].content}</p>
                             <p>{props.shoes[id].price}원</p>
-                            <button className="btn btn-danger">주문하기</button>
+                            <button className="btn btn-danger" onClick={() => {
+                                dispatch(addItem( {id : 3, name : 'red Yordan', count : 1} ))
+                            }}>주문하기</button>
                         </div> 
                     </>
                         :

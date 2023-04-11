@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import data from '../data.js';
@@ -8,6 +8,10 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 
 const Main = () => {
+
+    useEffect(() => {
+        localStorage.setItem('watched',JSON.stringify([]))
+    },[])
 
     let [shoes, setShoes] = useState(data);
 

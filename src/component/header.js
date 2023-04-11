@@ -8,14 +8,11 @@ const Header = () => {
     let navigate = useNavigate();
 
     // react-query 성공/실패/로딩중 파악 가능
-    let result = useQuery('Data', () => {
-        return axios.get('https://codingapple1.github.io/userdata.json').then((a) => {
+    let result = useQuery(["Data"], () => 
+        axios.get('https://codingapple1.github.io/userdata.json').then((a) => {
             return a.data;
         })
-    })
-
-    
-
+    )
 
     return (
         <Navbar bg="light" expand="lg">
@@ -36,7 +33,7 @@ const Header = () => {
                     
                 </Nav>
                 <Nav className='ms-auto'>
-                {/* { result.isLoading ? '로딩중' : result.data.name } */}
+                { result.isLoading ? '로딩중' : result.data.name }
                 </Nav>
                 
                 </Navbar.Collapse>
